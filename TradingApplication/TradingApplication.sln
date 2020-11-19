@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingApplication.Domain", "TradingApplication.Domain\TradingApplication.Domain.csproj", "{1DF4E94F-6B0D-42E8-9AA2-D995509AEA90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingApplication.EntityFramework", "TradingApplication.EntityFramework\TradingApplication.EntityFramework.csproj", "{AE933AC2-C267-4067-9550-63490272B750}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DF4E94F-6B0D-42E8-9AA2-D995509AEA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF4E94F-6B0D-42E8-9AA2-D995509AEA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF4E94F-6B0D-42E8-9AA2-D995509AEA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF4E94F-6B0D-42E8-9AA2-D995509AEA90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE933AC2-C267-4067-9550-63490272B750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE933AC2-C267-4067-9550-63490272B750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE933AC2-C267-4067-9550-63490272B750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE933AC2-C267-4067-9550-63490272B750}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2AF43259-E34F-457C-A2C0-31E3BAA60C68}
+	EndGlobalSection
+EndGlobal
