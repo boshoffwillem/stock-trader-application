@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TradingApplication.EntityFramework.Migrations
 {
@@ -13,7 +14,9 @@ namespace TradingApplication.EntityFramework.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateJoined = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,7 +53,8 @@ namespace TradingApplication.EntityFramework.Migrations
                     IsPurchased = table.Column<bool>(type: "bit", nullable: false),
                     Stock_Symbol = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock_PricePerShare = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Shares = table.Column<int>(type: "int", nullable: false)
+                    Shares = table.Column<int>(type: "int", nullable: false),
+                    DateProcessed = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
