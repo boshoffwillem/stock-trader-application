@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TradingApplication.Domain.Models
 {
-    public class Account
-    {
-        public int Id { get; set; }
+   public class Account : DomainObject
+   {
+      public User AccountHolder { get; set; }
 
-        public User AccountHolder { get; set; }
+      public decimal Balance { get; set; }
 
-        public decimal Balance { get; set; }
-
-        public IEnumerable<AssetTransaction> AssetTransactions { get; set; }
-    }
+      public IEnumerable<AssetTransaction> AssetTransactions { get; set; }
+   }
 }

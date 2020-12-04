@@ -10,7 +10,7 @@ using TradingApplication.EntityFramework;
 namespace TradingApplication.EntityFramework.Migrations
 {
     [DbContext(typeof(TradingApplicationDbContext))]
-    [Migration("20201119091522_initial")]
+    [Migration("20201204083444_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,9 @@ namespace TradingApplication.EntityFramework.Migrations
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateProcessed")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsPurchased")
                         .HasColumnType("bit");
 
@@ -71,7 +74,13 @@ namespace TradingApplication.EntityFramework.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<DateTime>("DateJoined")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
