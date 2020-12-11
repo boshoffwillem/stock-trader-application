@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TradingApplication.Domain\TradingApplication.Domain.csproj" />
     <ProjectReference Include="..\TradingApplication.EntityFramework\TradingApplication.EntityFramework.csproj" />
+    <ProjectReference Include="..\TradingApplication.FinancialModellingPrepApi\TradingApplication.FinancialModellingPrepApi.csproj" />
   </ItemGroup>
 
 </Project>
