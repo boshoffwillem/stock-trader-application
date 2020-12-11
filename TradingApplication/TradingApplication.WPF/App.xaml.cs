@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using TradingApplication.Domain.Models;
+using TradingApplication.FinancialModellingPrepApi.Services;
 using TradingApplication.WPF.ViewModels;
 
 namespace TradingApplication.WPF
