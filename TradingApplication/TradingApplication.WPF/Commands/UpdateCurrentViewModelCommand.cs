@@ -29,7 +29,7 @@ namespace TradingApplication.WPF.Commands
             switch (viewType)
             {
                case ViewType.Home:
-                  navigator.CurrentViewModel = new HomeViewModel(MajorIndexViewModel.LoadMajorIndexViewModel(new MajorIndexService()));
+                  navigator.CurrentViewModel = new HomeViewModel(MajorIndexListingViewModel.LoadMajorIndexViewModel(new MajorIndexService()));
                   break;
                case ViewType.Portfolio:
                   navigator.CurrentViewModel = new PortfolioViewModel();
