@@ -1,20 +1,55 @@
-﻿using System.Threading.Tasks;
-using TradingApplication.Domain.Models;
+﻿using TradingApplication.Domain.Models;
 using TradingApplication.Domain.Services;
 
 namespace TradingApplication.WPF.ViewModels
 {
-   public class MajorIndexViewModel : BaseViewModel
+   public class MajorIndexListingViewModel : BaseViewModel
    {
       private readonly IMajorIndexService majorServiceIndex;
-      
-      public MajorIndex DowJones { get; set; }
 
-      public MajorIndex SP500 { get; set; }
+      private MajorIndex dowJones;
+      public MajorIndex DowJones
+      {
+         get
+         {
+            return dowJones;
+         }
+         set
+         {
+            dowJones = value;
+            OnPropertyChanged(nameof(DowJones));
+         }
+      }
 
-      public MajorIndex Nasdaq { get; set; }
+      private MajorIndex sp500;
+      public MajorIndex SP500
+      {
+         get
+         {
+            return sp500;
+         }
+         set
+         {
+            sp500 = value;
+            OnPropertyChanged(nameof(SP500));
+         }
+      }
 
-      public MajorIndexViewModel(IMajorIndexService majorServiceIndex)
+      private MajorIndex nasdaq;
+      public MajorIndex Nasdaq
+      {
+         get
+         {
+            return nasdaq;
+         }
+         set
+         {
+            nasdaq = value;
+            OnPropertyChanged(nameof(Nasdaq));
+         }
+      }
+
+      public MajorIndexListingViewModel(IMajorIndexService majorServiceIndex)
       {
          this.majorServiceIndex = majorServiceIndex;
       }
@@ -23,9 +58,9 @@ namespace TradingApplication.WPF.ViewModels
       /// Factory method.
       /// </summary>
       /// <returns></returns>
-      public static MajorIndexViewModel LoadMajorIndexViewModel(IMajorIndexService majorServiceIndex)
+      public static MajorIndexListingViewModel LoadMajorIndexViewModel(IMajorIndexService majorServiceIndex)
       {
-         var viewModel = new MajorIndexViewModel(majorServiceIndex);
+         var viewModel = new MajorIndexListingViewModel(majorServiceIndex);
          viewModel.LoadMajorIndices();
          return viewModel;
       }
