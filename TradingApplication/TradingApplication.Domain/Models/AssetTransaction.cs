@@ -8,7 +8,7 @@ namespace TradingApplication.Domain.Models
 
       public bool IsPurchased { get; set; }
 
-      public Stock Stock { get; set; }
+      public Asset Asset { get; set; }
 
       public int Shares { get; set; }
 
