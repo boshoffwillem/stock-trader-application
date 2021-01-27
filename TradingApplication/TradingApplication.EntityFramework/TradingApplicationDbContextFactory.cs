@@ -8,7 +8,7 @@ namespace TradingApplication.EntityFramework
       public TradingApplicationDbContext CreateDbContext(string[] args = null)
       {
          var options = new DbContextOptionsBuilder<TradingApplicationDbContext>();
-         options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TradingApplication;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+         options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=TradingApplication;Trusted_Connection=True;");
          return new TradingApplicationDbContext(options.Options);
       }
    }

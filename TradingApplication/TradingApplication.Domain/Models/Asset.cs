@@ -1,6 +1,6 @@
 ﻿namespace TradingApplication.Domain.Models
 {
-   public class Stock
+   public class Asset
    {
       public string Symbol { get; set; }
 
