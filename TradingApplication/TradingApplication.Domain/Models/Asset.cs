@@ -4,6 +4,6 @@
    {
       public string Symbol { get; set; }
 
-      public decimal PricePerShare { get; set; }
+      public double PricePerShare { get; set; }
    }
 }
