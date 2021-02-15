@@ -1,11 +1,15 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 using TradingApplication.Domain.Models;
 using TradingApplication.Domain.Services;
 using TradingApplication.Domain.Services.TransactionServices;
 using TradingApplication.EntityFramework;
 using TradingApplication.EntityFramework.Services;
 using TradingApplication.FinancialModellingPrepApi.Services;
+using TradingApplication.WPF.State.Navigators;
 using TradingApplication.WPF.ViewModels;
+using TradingApplication.WPF.ViewModels.Factories;
 
 namespace TradingApplication.WPF
 {
@@ -14,17 +18,30 @@ namespace TradingApplication.WPF
     /// </summary>
     public partial class App : Application
     {
-        protected override async void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
-            IStockPriceService stockPriceService = new StockPriceService();
-            IDataService<Account> accountService = new AccountDataService(new TradingApplicationDbContextFactory());
-            IBuyStockService buyStockService = new BuyStockService(stockPriceService, accountService);
-            Account buyer = await accountService.Get(1);
-            await buyStockService.BuyStock(buyer, "T", 5);
-            var mainWindow = new MainWindow();
-            mainWindow.DataContext = new MainViewModel();
+            var serviceProvider = CreateServiceProvider();
+            var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
             base.OnStartup(e);
+        }
+
+        private IServiceProvider CreateServiceProvider()
+        {
+            IServiceCollection services = new ServiceCollection();
+            services.AddSingleton<IStockPriceService, StockPriceService>();
+            services.AddSingleton<IDataService<Account>, AccountDataService>();
+            services.AddSingleton<TradingApplicationDbContextFactory>();
+            services.AddSingleton<IBuyStockService, BuyStockService>();
+            services.AddSingleton<IMajorIndexService, MajorIndexService>();
+            services.AddSingleton<ITradingApplicationViewModelAbstractFactory, TradingApplicationViewModelAbstractFactory>();
+            services.AddSingleton<ITradingApplicationViewModelFactory<HomeViewModel>, HomeViewModelFactory>();
+            services.AddSingleton<ITradingApplicationViewModelFactory<PortfolioViewModel>, PortfolioViewModelFactory>();
+            services.AddSingleton<ITradingApplicationViewModelFactory<MajorIndexListingViewModel>, MajorIndexListingViewModelFactory>();
+            services.AddScoped<INavigator, Navigator>();
+            services.AddScoped<MainViewModel>();
+            services.AddScoped<MainWindow>(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+            return services.BuildServiceProvider();
         }
     }
 }

@@ -2,6 +2,7 @@
 using TradingApplication.WPF.Commands;
 using TradingApplication.WPF.Models;
 using TradingApplication.WPF.ViewModels;
+using TradingApplication.WPF.ViewModels.Factories;
 
 namespace TradingApplication.WPF.State.Navigators
 {
@@ -19,7 +20,11 @@ namespace TradingApplication.WPF.State.Navigators
          }
       }
 
+      public ICommand UpdateCurrentViewModelCommand { get; }
 
-      public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
+      public Navigator(ITradingApplicationViewModelAbstractFactory viewModelFactory)
+      {
+          UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(this, viewModelFactory);
+      }
    }
 }

@@ -3,21 +3,24 @@ using System.Windows.Input;
 using TradingApplication.FinancialModellingPrepApi.Services;
 using TradingApplication.WPF.State.Navigators;
 using TradingApplication.WPF.ViewModels;
+using TradingApplication.WPF.ViewModels.Factories;
 
 namespace TradingApplication.WPF.Commands
 {
    public class UpdateCurrentViewModelCommand : ICommand
    {
-      private INavigator navigator;
+      private readonly INavigator navigator;
+      private readonly ITradingApplicationViewModelAbstractFactory viewModelAbstractFactory;
 
       public event EventHandler CanExecuteChanged;
 
-      public UpdateCurrentViewModelCommand(INavigator navigator)
-      {
-         this.navigator = navigator;
-      }
+        public UpdateCurrentViewModelCommand(INavigator navigator, ITradingApplicationViewModelAbstractFactory viewModelAbstractFactory)
+        {
+            this.navigator = navigator;
+            this.viewModelAbstractFactory = viewModelAbstractFactory;
+        }
 
-      public bool CanExecute(object parameter)
+        public bool CanExecute(object parameter)
       {
          return true;
       }
@@ -26,17 +29,7 @@ namespace TradingApplication.WPF.Commands
       {
          if (parameter is ViewType viewType)
          {
-            switch (viewType)
-            {
-               case ViewType.Home:
-                  navigator.CurrentViewModel = new HomeViewModel(MajorIndexListingViewModel.LoadMajorIndexViewModel(new MajorIndexService()));
-                  break;
-               case ViewType.Portfolio:
-                  navigator.CurrentViewModel = new PortfolioViewModel();
-                  break;
-               default:
-                  break;
-            }
+            navigator.CurrentViewModel = viewModelAbstractFactory.CreateViewModel(viewType);
          }
       }
    }
