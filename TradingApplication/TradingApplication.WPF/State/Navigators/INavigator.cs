@@ -6,7 +6,8 @@ namespace TradingApplication.WPF.State.Navigators
    public enum ViewType
    {
       Home,
-      Portfolio
+      Portfolio,
+      Buy
    }
 
    public interface INavigator

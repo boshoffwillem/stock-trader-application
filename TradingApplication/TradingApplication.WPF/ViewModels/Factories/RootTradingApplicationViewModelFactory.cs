@@ -3,17 +3,20 @@ using TradingApplication.WPF.State.Navigators;
 
 namespace TradingApplication.WPF.ViewModels.Factories
 {
-    public class TradingApplicationViewModelAbstractFactory : ITradingApplicationViewModelAbstractFactory
+    public class RootTradingApplicationViewModelFactory : IRootTradingApplicationViewModelFactory
     {
         private readonly ITradingApplicationViewModelFactory<HomeViewModel> homeViewModelFactory;
         private readonly ITradingApplicationViewModelFactory<PortfolioViewModel> portfolioViewModelFactory;
+        private readonly BuyViewModel buyViewModel;
 
-        public TradingApplicationViewModelAbstractFactory(
+        public RootTradingApplicationViewModelFactory(
             ITradingApplicationViewModelFactory<HomeViewModel> homeViewModelFactory, 
-            ITradingApplicationViewModelFactory<PortfolioViewModel> portfolioViewModelFactory = null)
+            ITradingApplicationViewModelFactory<PortfolioViewModel> portfolioViewModelFactory,
+            BuyViewModel buyViewModel)
         {
             this.homeViewModelFactory = homeViewModelFactory;
             this.portfolioViewModelFactory = portfolioViewModelFactory;
+            this.buyViewModel = buyViewModel;
         }
 
         public BaseViewModel CreateViewModel(ViewType viewType)
@@ -24,6 +27,8 @@ namespace TradingApplication.WPF.ViewModels.Factories
                   return homeViewModelFactory.CreateViewModel();
                case ViewType.Portfolio:
                   return portfolioViewModelFactory.CreateViewModel();
+               case ViewType.Buy:
+                   return buyViewModel;
                default:
                   throw new ArgumentException("The view type does not have a view model.", "viewType");
             }

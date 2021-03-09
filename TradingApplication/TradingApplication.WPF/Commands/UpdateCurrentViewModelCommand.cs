@@ -10,14 +10,14 @@ namespace TradingApplication.WPF.Commands
    public class UpdateCurrentViewModelCommand : ICommand
    {
       private readonly INavigator navigator;
-      private readonly ITradingApplicationViewModelAbstractFactory viewModelAbstractFactory;
+      private readonly IRootTradingApplicationViewModelFactory viewModelFactory;
 
       public event EventHandler CanExecuteChanged;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator, ITradingApplicationViewModelAbstractFactory viewModelAbstractFactory)
+        public UpdateCurrentViewModelCommand(INavigator navigator, IRootTradingApplicationViewModelFactory viewModelFactory)
         {
             this.navigator = navigator;
-            this.viewModelAbstractFactory = viewModelAbstractFactory;
+            this.viewModelFactory = viewModelFactory;
         }
 
         public bool CanExecute(object parameter)
@@ -29,7 +29,7 @@ namespace TradingApplication.WPF.Commands
       {
          if (parameter is ViewType viewType)
          {
-            navigator.CurrentViewModel = viewModelAbstractFactory.CreateViewModel(viewType);
+            navigator.CurrentViewModel = viewModelFactory.CreateViewModel(viewType);
          }
       }
    }
