@@ -22,7 +22,7 @@ namespace TradingApplication.WPF.State.Navigators
 
       public ICommand UpdateCurrentViewModelCommand { get; }
 
-      public Navigator(ITradingApplicationViewModelAbstractFactory viewModelFactory)
+      public Navigator(IRootTradingApplicationViewModelFactory viewModelFactory)
       {
           UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(this, viewModelFactory);
       }

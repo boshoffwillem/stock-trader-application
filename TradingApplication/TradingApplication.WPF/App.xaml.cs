@@ -34,10 +34,11 @@ namespace TradingApplication.WPF
             services.AddSingleton<TradingApplicationDbContextFactory>();
             services.AddSingleton<IBuyStockService, BuyStockService>();
             services.AddSingleton<IMajorIndexService, MajorIndexService>();
-            services.AddSingleton<ITradingApplicationViewModelAbstractFactory, TradingApplicationViewModelAbstractFactory>();
+            services.AddSingleton<IRootTradingApplicationViewModelFactory, RootTradingApplicationViewModelFactory>();
             services.AddSingleton<ITradingApplicationViewModelFactory<HomeViewModel>, HomeViewModelFactory>();
             services.AddSingleton<ITradingApplicationViewModelFactory<PortfolioViewModel>, PortfolioViewModelFactory>();
             services.AddSingleton<ITradingApplicationViewModelFactory<MajorIndexListingViewModel>, MajorIndexListingViewModelFactory>();
+            services.AddScoped<BuyViewModel>();
             services.AddScoped<INavigator, Navigator>();
             services.AddScoped<MainViewModel>();
             services.AddScoped<MainWindow>(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
